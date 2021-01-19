@@ -4,7 +4,7 @@ import { DELETE_ITEM } from "../queries";
 import { useMutation } from "@apollo/client";
 
 export default function Navbar(props) {
-  const [deleteItem, {}] = useMutation(DELETE_ITEM);
+  const [deleteItem] = useMutation(DELETE_ITEM);
   const handleDelete = () => {
     deleteItem({
       variables: {
@@ -21,12 +21,9 @@ export default function Navbar(props) {
       />
       <header className="flex items-center justify-between leading-tight py-2 px-4 md:p-4">
         <h1 className="text-lg">
-          <a
-            className="no-underline hover:underline text-gray-600 text-base"
-            href="#"
-          >
+          <span className="no-underline hover:underline text-gray-600 text-base">
             {props.type}
-          </a>
+          </span>
         </h1>
         <p className="text-gray-400 text-sm">${props.price}</p>
       </header>

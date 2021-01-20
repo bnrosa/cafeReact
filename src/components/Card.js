@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { DELETE_ITEM } from "../queries";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
+import { SERVER_URL } from "../index.js";
 
 export default function Navbar(props) {
   const [deleteItem] = useMutation(DELETE_ITEM);
@@ -37,7 +38,7 @@ export default function Navbar(props) {
       <img
         alt="Placeholder"
         className="block h-auto w-full"
-        src={"http://localhost:4000/" + props.photo}
+        src={SERVER_URL + props.photo}
       />
       <header className="flex items-center justify-between leading-tight py-2 px-4 md:p-4">
         <h1 className="text-lg">

@@ -54,6 +54,9 @@ export default function ItemForm(props) {
               value={props.type}
               onChange={(e) => props.setType(e.target.value)}
             >
+              <option disabled selected value="">
+                ...
+              </option>
               <option value="Pizza">Pizza</option>
               <option value="Burger">Burger</option>
               <option value="Sushi">Sushi</option>

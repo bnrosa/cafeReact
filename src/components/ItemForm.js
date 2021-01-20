@@ -19,6 +19,7 @@ export default function ItemForm(props) {
               placeholder="Name"
               value={props.name}
               onChange={(e) => props.setName(e.target.value)}
+              required
             />
           </div>
         </div>
@@ -35,6 +36,7 @@ export default function ItemForm(props) {
               placeholder="Price"
               value={props.price}
               onChange={(e) => props.setPrice(e.target.value)}
+              required
             />
           </div>
         </div>
@@ -75,6 +77,7 @@ export default function ItemForm(props) {
                   id="photo"
                   name="photo"
                   onChange={(e) => props.setFile(e)}
+                  required
                 />
               </label>
             </div>

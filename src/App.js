@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import CreateItem from "./pages/CreateItem";
 import EditItem from "./pages/EditItem";
 import Navbar from "./components/Navbar";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/editMenuItem/:id" exact component={EditItem} />
           <Route path="/createMenuItem" exact component={CreateItem} />
         </Switch>
+        <ToastContainer autoClose={3000} />
       </div>
     </Router>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";

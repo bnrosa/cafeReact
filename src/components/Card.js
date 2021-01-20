@@ -2,15 +2,34 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { DELETE_ITEM } from "../queries";
 import { useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 
 export default function Navbar(props) {
   const [deleteItem] = useMutation(DELETE_ITEM);
+
+  const deleteSuccessToast = () =>
+    toast.success("Item deleted successfully !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+
+  const deleteErrorToast = (err) => {
+    toast.error("Failed to delete item: " + err, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   const handleDelete = () => {
     deleteItem({
       variables: {
         id: props.id,
       },
-    });
+    })
+      .then(() => {
+        deleteSuccessToast();
+      })
+      .catch((err) => {
+        deleteErrorToast(err);
+      });
   };
   return (
     <article className="overflow-hidden rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3 plan-card m-2">

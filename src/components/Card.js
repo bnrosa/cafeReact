@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { DELETE_ITEM } from "../queries";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
-import { SERVER_URL } from "../index.js";
 
 export default function Navbar(props) {
   const [deleteItem] = useMutation(DELETE_ITEM);

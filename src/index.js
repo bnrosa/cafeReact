@@ -6,10 +6,9 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import App from "./App";
-require("dotenv").config();
-export const SERVER_URL = "https://cafe-menu-api1.herokuapp.com/";
 
-console.log(SERVER_URL);
+export const SERVER_URL = require("./config.js").REMOTE;
+
 const client = new ApolloClient({
   link: createUploadLink({
     uri: SERVER_URL + "graphql",

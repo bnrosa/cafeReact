@@ -38,7 +38,7 @@ export default function Navbar(props) {
       <img
         alt="Placeholder"
         className="block h-auto w-full"
-        src={SERVER_URL + props.photo}
+        src={props.photo}
       />
       <header className="flex items-center justify-between leading-tight py-2 px-4 md:p-4">
         <h1 className="text-lg">

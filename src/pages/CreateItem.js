@@ -3,18 +3,26 @@ import { useMutation } from "@apollo/client";
 import { ADD_MENU_ITEM } from "../queries";
 import ItemForm from "../components/ItemForm";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 export default function CreateItem() {
+  let history = useHistory();
   const [addMenuItem, { loading, error }] = useMutation(ADD_MENU_ITEM);
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
 
-  const creatSuccessToast = () =>
+  const createSuccessToast = () =>
     toast.success("Item created successfully !", {
       position: toast.POSITION.TOP_RIGHT,
     });
+
+  const createErrorToast = (err) => {
+    toast.error("Failed to create item: " + err, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const setFile = ({
     target: {
@@ -35,9 +43,14 @@ export default function CreateItem() {
         price: parseInt(price),
         type: type,
       },
-    }).then(() => {
-      creatSuccessToast();
-    });
+    })
+      .then(() => {
+        createSuccessToast();
+        history.push("/");
+      })
+      .catch((err) => {
+        createErrorToast(err);
+      });
   };
 
   if (loading) return <div>Loading...</div>;

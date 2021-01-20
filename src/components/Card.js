@@ -26,6 +26,7 @@ export default function Navbar(props) {
     })
       .then(() => {
         deleteSuccessToast();
+        props.refetch();
       })
       .catch((err) => {
         deleteErrorToast(err);

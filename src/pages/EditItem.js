@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 export default function EditItem() {
   const { id } = useParams();
   let history = useHistory();
-  const [updateMenuItem, {}] = useMutation(UPDATE_MENU_ITEM);
+  const [updateMenuItem] = useMutation(UPDATE_MENU_ITEM);
 
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState("");

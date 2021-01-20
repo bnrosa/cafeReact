@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_MENU_ITEM, GET_ITEM } from "../queries";
 import ItemForm from "../components/ItemForm";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function EditItem() {
   const { id } = useParams();
+  let history = useHistory();
   const [updateMenuItem, {}] = useMutation(UPDATE_MENU_ITEM);
 
   const [name, setName] = useState("");
@@ -34,6 +36,17 @@ export default function EditItem() {
     validity.valid && setPhoto(file);
   };
 
+  const editSuccessToast = () =>
+    toast.success("Item edited successfully !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+
+  const editErrorToast = (err) => {
+    toast.error("Failed to edit item: " + err, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -45,7 +58,14 @@ export default function EditItem() {
         price: parseInt(price),
         type: type,
       },
-    });
+    })
+      .then(() => {
+        editSuccessToast();
+        history.push("/");
+      })
+      .catch((err) => {
+        editErrorToast(err);
+      });
   };
 
   if (loading) return <div>Loading...</div>;

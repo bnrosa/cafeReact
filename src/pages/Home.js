@@ -11,7 +11,7 @@ export default function Home() {
     if (!loading && data) {
       refetch();
     }
-  }, []);
+  }, [loading, data, refetch]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{JSON.stringify(error, null, 2)}</div>;
